@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ===== SEO / 分享預覽（請依需要修改）===== -->
+  <title>Angel Setsuna — Illustrator</title>
+  <meta name="description" content="Angel Setsuna — キャラクターデザイン・ゲームイラスト。お仕事のご依頼を承っております。Character design & game illustration. Open for commissions." />
+  <meta name="author" content="Angel Setsuna" />
+
+  <!-- 分享到社群時的預覽卡（把 og:image 換成你最強的一張代表作）-->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Angel Setsuna — Illustrator" />
+  <meta property="og:description" content="キャラクターデザイン・ゲームイラスト / Character design & game illustration. Open for commissions." />
+  <meta property="og:image" content="works/01.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- ===== 字體 ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+
+  <!-- ========================= 導覽列 ========================= -->
+  <header class="nav" id="nav">
+    <a href="#hero" class="nav__brand">Angel&nbsp;Setsuna</a>
+
+    <nav class="nav__links">
+      <a href="#works"    data-i18n="nav.works">Works</a>
+      <a href="#about"    data-i18n="nav.about">About</a>
+      <a href="#business"   data-i18n="nav.business">Business</a>
+      <a href="#commission" data-i18n="nav.commission">Commission</a>
+      <a href="#contact"    data-i18n="nav.contact">Contact</a>
+    </nav>
+
+    <div class="lang" id="langSwitch" role="group" aria-label="Language">
+      <button data-lang="ja" class="is-active">JP</button>
+      <button data-lang="en">EN</button>
+      <button data-lang="zh">中</button>
+    </div>
+
+    <button class="nav__menu" id="menuBtn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- ========================= Hero ========================= -->
+  <section class="hero" id="hero">
+    <!-- 作品幻燈片：由 main.js 依 works.js 自動輪播 -->
+    <div class="hero__slides" id="heroSlides"></div>
+
+    <div class="hero__inner">
+      <!-- 頭貼 + 名字（並排） -->
+      <div class="hero__head">
+        <img class="hero__avatar" id="heroAvatar" src="assets/avatar.png" alt="Angel Setsuna" />
+        <div class="hero__id">
+          <p class="hero__role" data-i18n="hero.role">キャラクターデザイン / ゲームイラスト</p>
+          <h1 class="hero__name">Angel Setsuna</h1>
+        </div>
+      </div>
+
+      <!-- 社群圖標：由 main.js 依 SOCIAL 自動生成 -->
+      <div class="hero__social" id="heroSocial"></div>
+
+      <a href="#contact" class="btn btn--primary" data-i18n="hero.cta">お仕事のご依頼</a>
+    </div>
+
+    <a href="#works" class="hero__scroll" aria-label="Scroll to works"><span></span></a>
+  </section>
+
+  <!-- ========================= Works ========================= -->
+  <section class="section" id="works">
+    <div class="section__head">
+      <h2 class="section__title" data-i18n="works.title">Works</h2>
+      <p class="section__sub" data-i18n="works.sub">作品集</p>
+    </div>
+
+    <!-- 篩選列：作品分類達 2 種以上時，由 JS 自動顯示 -->
+    <div class="filters" id="filters" hidden></div>
+
+    <!-- 作品牆：由 assets/js/main.js 依 works.js 自動生成 -->
+    <div class="grid" id="grid"></div>
+
+    <p class="works__nda" data-i18n="works.nda">
+      ※ 一部の制作物は守秘義務契約により非公開です。詳細は個別にご相談ください。
+    </p>
+  </section>
+
+  <!-- ========================= About ========================= -->
+  <section class="section section--narrow" id="about">
+    <div class="section__head">
+      <h2 class="section__title" data-i18n="about.title">About</h2>
+      <p class="section__sub" data-i18n="about.sub">紹介</p>
+    </div>
+
+    <p class="about__lead" data-i18n="about.lead">
+      二次元・美少女イラストを中心に、キャラクターデザインからゲーム用立ち絵、書籍カバーまで幅広く制作しています。
+    </p>
+
+    <div class="about__grid">
+      <div class="about__block">
+        <h3 data-i18n="about.skillsTitle">対応分野</h3>
+        <ul>
+          <li data-i18n="about.skill1">キャラクターデザイン</li>
+          <li data-i18n="about.skill2">ゲーム用立ち絵・イベントCG</li>
+          <li data-i18n="about.skill3">書籍・小説カバー</li>
+          <li data-i18n="about.skill4">PR・宣伝用イラスト</li>
+        </ul>
+      </div>
+      <div class="about__block">
+        <h3 data-i18n="about.toolsTitle">制作環境</h3>
+        <ul>
+          <li data-i18n="about.tool1">CLIP STUDIO PAINT</li>
+          <li data-i18n="about.tool2">Adobe Photoshop</li>
+          <li data-i18n="about.tool3" data-i18n-html="true">納品形式：PSD（レイヤー分け）/ PNG / 高解像度データ</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= Business 商業合作 ========================= -->
+  <section class="section section--narrow" id="business">
+    <div class="section__head">
+      <h2 class="section__title" data-i18n="business.title">Business</h2>
+      <p class="section__sub" data-i18n="business.sub">商業・法人のご依頼</p>
+    </div>
+
+    <p class="business__lead" data-i18n="business.lead">
+      ゲーム・出版・宣伝など、商業案件を承っております。用途・ご予算に応じて柔軟に対応いたします。
+    </p>
+
+    <!-- 接案類型 -->
+    <h3 class="biz-h" data-i18n="business.typesTitle">対応分野</h3>
+    <div class="biz-types">
+      <span data-i18n="business.t1">キャラクターデザイン</span>
+      <span data-i18n="business.t2">立ち絵・ゲームCG</span>
+      <span data-i18n="business.t3">書籍・カバーイラスト</span>
+      <span data-i18n="business.t4">宣伝・PRイラスト</span>
+    </div>
+
+    <!-- 合作流程 -->
+    <h3 class="biz-h" data-i18n="business.flowTitle">ご依頼の流れ</h3>
+    <ol class="steps steps--row">
+      <li><span class="steps__no">01</span>
+        <h3 data-i18n="business.f1t">お問い合わせ</h3>
+        <p data-i18n="business.f1d">用途・納期・ご予算をご相談ください。</p></li>
+      <li><span class="steps__no">02</span>
+        <h3 data-i18n="business.f2t">お見積もり</h3>
+        <p data-i18n="business.f2d">利用範囲に応じてお見積もりします。</p></li>
+      <li><span class="steps__no">03</span>
+        <h3 data-i18n="business.f3t">ご契約</h3>
+        <p data-i18n="business.f3d">条件を確認のうえご契約します。</p></li>
+      <li><span class="steps__no">04</span>
+        <h3 data-i18n="business.f4t">ラフ・制作</h3>
+        <p data-i18n="business.f4d">ラフを確認しながら制作します。</p></li>
+      <li><span class="steps__no">05</span>
+        <h3 data-i18n="business.f5t">納品</h3>
+        <p data-i18n="business.f5d">指定形式で納品いたします。</p></li>
+    </ol>
+
+    <!-- 取引について -->
+    <h3 class="biz-h" data-i18n="business.termsTitle">お取引について</h3>
+    <ul class="biz-terms">
+      <li data-i18n="business.term1">ライセンス（使用許諾）・著作権譲渡（買い切り）いずれもご相談に応じます。</li>
+      <li data-i18n="business.term2">請求書（インボイス）の発行に対応。海外のお客様は PayPal・Wise をご利用いただけます。</li>
+      <li data-i18n="business.term3">NDA（秘密保持契約）の締結に対応いたします。</li>
+      <li data-i18n="business.term4">制作実績としての公開可否は、事前にご相談ください。</li>
+    </ul>
+
+    <a href="#contact" class="btn btn--primary biz-cta" data-i18n="business.cta">お問い合わせへ</a>
+  </section>
+
+  <!-- ========================= Commission 個人委託 ========================= -->
+  <section class="section section--narrow" id="commission">
+    <div class="section__head">
+      <h2 class="section__title" data-i18n="commission.title">Commission</h2>
+      <p class="section__sub" data-i18n="commission.sub">ご依頼の流れ</p>
+    </div>
+
+    <!-- 私委流程 -->
+    <ol class="steps steps--row" style="--steps:4">
+      <li><span class="steps__no">01</span>
+        <h3 data-i18n="commission.s1t">表單記入</h3>
+        <p data-i18n="commission.s1d">委託表單をダウンロードし、必要事項をご記入ください。</p></li>
+      <li><span class="steps__no">02</span>
+        <h3 data-i18n="commission.s2t">確認・着手金</h3>
+        <p data-i18n="commission.s2d">日程が近づきましたらご連絡し、総額の50%を着手金として頂きます。</p></li>
+      <li><span class="steps__no">03</span>
+        <h3 data-i18n="commission.s3t">ラフ制作</h3>
+        <p data-i18n="commission.s3d">ラフをご確認いただきながら制作します（無料修正3回）。</p></li>
+      <li><span class="steps__no">04</span>
+        <h3 data-i18n="commission.s4t">納品</h3>
+        <p data-i18n="commission.s4d">残金ご入金後、高解像度データをGmailにてお送りします（完成図 無料修正1回）。</p></li>
+    </ol>
+
+    <p class="commission__note" data-i18n="commission.price">
+      料金は用途・加購項目・商用利用範囲に応じて異なります。詳細・規約は委託表單をご確認ください。制作物の著作権は作者が保有し、委託者は指定用途の使用許諾を取得します。
+    </p>
+
+    <a class="btn btn--outline biz-cta"
+       href="form/AngelSetsuna_Commission_Form_2026.docx"
+       download="Angel_Setsuna委託表單2026.docx"
+       data-i18n="commission.download">委託表單をダウンロード</a>
+  </section>
+
+  <!-- ========================= Contact ========================= -->
+  <section class="section section--narrow" id="contact">
+    <div class="section__head">
+      <h2 class="section__title" data-i18n="contact.title">Contact</h2>
+      <p class="section__sub" data-i18n="contact.sub">お問い合わせ</p>
+    </div>
+
+    <p class="contact__lead" data-i18n="contact.lead">
+      ご依頼内容に応じて、以下よりお進みください。通常3営業日以内に返信いたします。
+    </p>
+
+    <div class="tracks">
+
+      <!-- 商業・法人（主） -->
+      <div class="track track--primary">
+        <span class="track__tag" data-i18n="contact.bizTag">推奨</span>
+        <h3 data-i18n="contact.bizTitle">商業・法人のご依頼</h3>
+        <p data-i18n="contact.bizDesc">
+          ゲーム・出版・宣伝用途など。用途・ご予算・利用範囲に応じてお見積もりいたします。請求書の発行も可能です。
+        </p>
+        <a class="btn btn--primary" id="mailtoBtn"
+           href="mailto:angel.setsuna.drawing@gmail.com"
+           data-i18n="contact.bizBtn">メールで相談する</a>
+      </div>
+
+      <!-- 個人（輔） -->
+      <div class="track">
+        <h3 data-i18n="contact.persTitle">個人のご依頼</h3>
+        <p data-i18n="contact.persDesc">
+          委託表單をダウンロードし、ご記入のうえ下記Gmailへ送信してください。
+        </p>
+        <ol class="howto">
+          <li><span class="howto__no">1</span><p data-i18n="contact.h1">委託表單をダウンロード</p></li>
+          <li><span class="howto__no">2</span><p data-i18n="contact.h2">必要事項をご記入</p></li>
+          <li><span class="howto__no">3</span><p data-i18n="contact.h3">下記Gmailへ送信</p></li>
+        </ol>
+        <a class="btn btn--outline"
+           href="form/AngelSetsuna_Commission_Form_2026.docx"
+           download="Angel_Setsuna委託表單2026.docx"
+           data-i18n="contact.download">委託表單をダウンロード</a>
+      </div>
+
+    </div>
+
+    <!-- Email：一鍵複製 -->
+    <div class="contact__mail">
+      <span id="emailText">angel.setsuna.drawing@gmail.com</span>
+      <button id="copyMail" class="btn btn--ghost" data-i18n="contact.copy">コピー</button>
+    </div>
+  </section>
+
+  <!-- ========================= 頁尾 ========================= -->
+  <footer class="footer">
+    <div class="social" id="social"></div>
+    <p class="footer__copy">© <span id="year"></span> Angel Setsuna. <span data-i18n="footer.rights">無断転載・無断使用を禁じます。</span></p>
+  </footer>
+
+  <!-- ========================= Lightbox ========================= -->
+  <div class="lb" id="lightbox" hidden>
+    <button class="lb__close" id="lbClose" aria-label="Close">&times;</button>
+    <button class="lb__nav lb__prev" id="lbPrev" aria-label="Previous">&lsaquo;</button>
+    <button class="lb__nav lb__next" id="lbNext" aria-label="Next">&rsaquo;</button>
+    <figure class="lb__figure">
+      <img id="lbImg" src="" alt="" />
+      <figcaption id="lbCap"></figcaption>
+    </figure>
+  </div>
+
+  <!-- ========================= Scripts ========================= -->
+  <script src="assets/js/works.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
