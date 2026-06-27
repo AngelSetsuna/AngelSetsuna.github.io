@@ -25,7 +25,7 @@ for (const [path, uri] of Object.entries(map)) {
 }
 
 html = html.replace(/<link rel="stylesheet" href="assets\/css\/style\.css"\s*\/>/, `<style>\n${css}\n</style>`);
-html = html.split('assets/avatar.png').join(map['assets/avatar.png']);
+html = html.split('"assets/avatar.png"').join(`"${map['assets/avatar.png']}"`);
 html = html.replace(/<script src="assets\/js\/works\.js"><\/script>\s*/, '');
 html = html.replace(/<script src="assets\/js\/i18n\.js"><\/script>\s*/, '');
 html = html.replace(
