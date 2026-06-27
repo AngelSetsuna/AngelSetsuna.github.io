@@ -15,7 +15,7 @@ const works = await read('assets/js/works.js');
 const i18n = await read('assets/js/i18n.js');
 const main = await read('assets/js/main.js');
 
-const images = ['assets/avatar.png', 'works/01.jpg', 'works/02.jpg', 'works/03.jpg', 'works/04.jpg', 'works/05.jpg'];
+const images = ['assets/avatar.png', 'assets/favicon.png', 'assets/apple-touch-icon.png', 'works/01.jpg', 'works/02.jpg', 'works/03.jpg', 'works/04.jpg', 'works/05.jpg'];
 const map = {};
 for (const img of images) map[img] = await dataUri(img);
 
@@ -26,6 +26,8 @@ for (const [path, uri] of Object.entries(map)) {
 
 html = html.replace(/<link rel="stylesheet" href="assets\/css\/style\.css"\s*\/>/, `<style>\n${css}\n</style>`);
 html = html.split('"assets/avatar.png"').join(`"${map['assets/avatar.png']}"`);
+html = html.split('"assets/favicon.png"').join(`"${map['assets/favicon.png']}"`);
+html = html.split('"assets/apple-touch-icon.png"').join(`"${map['assets/apple-touch-icon.png']}"`);
 html = html.replace(/<script src="assets\/js\/works\.js"><\/script>\s*/, '');
 html = html.replace(/<script src="assets\/js\/i18n\.js"><\/script>\s*/, '');
 html = html.replace(
