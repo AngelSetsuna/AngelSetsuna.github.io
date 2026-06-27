@@ -198,19 +198,6 @@ ul, ol { list-style: none; }
 .hero__social a:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-3px); }
 .hero__social svg { width: 18px; height: 18px; fill: currentColor; }
 
-.hero__scroll {
-  position: absolute;
-  bottom: 2.2rem; left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-}
-.hero__scroll span {
-  display: block; width: 1px; height: 46px;
-  background: linear-gradient(var(--accent), transparent);
-  animation: scrollline 2s ease-in-out infinite;
-}
-@keyframes scrollline { 0%,100% { opacity: .3; } 50% { opacity: 1; } }
-
 @media (max-width: 480px) {
   .hero__head { flex-direction: column; gap: .8rem; }
   .hero__id { text-align: center; }
