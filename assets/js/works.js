@@ -39,12 +39,13 @@ const CATEGORIES = {
    日後作品變多、種類變雜時，把 category 改成不同值，篩選列就會自動出現。 */
 const WORKS = [
   {
-    image: "works/01.jpg",
+    image: "works/03.jpg",
     category: "character",
-    title: { ja: "アニス", en: "Anis", zh: "Anis" },
+    title: { ja: "リバーレリオ", en: "Liberalio", zh: "Liberalio" },
     client: "Fan Art",
     role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
     year: 2025,
+    focus: "center",   // 這張是橫圖，置中聚焦
   },
   {
     image: "works/02.jpg",
@@ -55,13 +56,12 @@ const WORKS = [
     year: 2025,
   },
   {
-    image: "works/03.jpg",
+    image: "works/01.jpg",
     category: "character",
-    title: { ja: "リバーレリオ", en: "Liberalio", zh: "Liberalio" },
+    title: { ja: "アニス", en: "Anis", zh: "Anis" },
     client: "Fan Art",
     role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
     year: 2025,
-    focus: "center",   // 這張是橫圖，置中聚焦
   },
   {
     image: "works/04.jpg",
