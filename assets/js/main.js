@@ -36,29 +36,6 @@
     artstation: `<svg viewBox="0 0 24 24"><path d="M0 17.723l2.027 3.505h.001a2.424 2.424 0 0 0 2.164 1.333h13.457l-2.792-4.838H0zm24-2.992a2.424 2.424 0 0 0-.359-1.266L15.547 1.27A2.424 2.424 0 0 0 13.471 0H9.626l8.027 13.953-2.054 3.553 1.79 3.101 6.611-11.45A2.424 2.424 0 0 0 24 14.731zM10.624 13.93l-2.768-4.79-2.789 4.79z"/></svg>`,
   };
 
-  // 對齊大／小標的「視覺左緣」。CJK 與拉丁字身留白不同、對齊基準也不同，
-  // 故量測各自首字的左側字身留白（actualBoundingBoxLeft），用 text-indent
-  // 把小標的墨水左緣推到與大標一致。三語、所有區塊自動適用。
-  function opticalAlignHeads() {
-    const ctx = document.createElement("canvas").getContext("2d");
-    if (!ctx) return;
-    const bearing = (el) => {
-      const txt = el.textContent.trim();
-      if (!txt) return 0;
-      const cs = getComputedStyle(el);
-      ctx.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
-      const abl = ctx.measureText(txt).actualBoundingBoxLeft;
-      return (typeof abl === "number" && isFinite(abl)) ? Math.abs(abl) : 0;
-    };
-    $$(".section__head").forEach((head) => {
-      const title = head.querySelector(".section__title");
-      const sub = head.querySelector(".section__sub");
-      if (!title || !sub) return;
-      const delta = bearing(title) - bearing(sub);
-      sub.style.textIndent = `${delta}px`;
-    });
-  }
-
   function applyI18n() {
     const dict = I18N[lang] || I18N.ja;
     document.documentElement.lang = lang;
@@ -68,12 +45,12 @@
       if (dict[key] != null) el.textContent = dict[key];
     });
 
-    // 光學左緣對齊：字體載入後量測每個標題／小標首字的左留白並補償
-    if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(opticalAlignHeads);
-    } else {
-      opticalAlignHeads();
-    }
+    // 大標為漢字時，其左側字身留白較大，小標需往右補一點才會對齊（值見 --sub-shift）
+    const CJK = /[　-ヿ㐀-鿿豈-﫿＀-￯]/;
+    $$(".section__head").forEach((head) => {
+      const title = head.querySelector(".section__title");
+      head.classList.toggle("cjk-title", !!title && CJK.test(title.textContent));
+    });
 
     const mailto = $("#mailtoBtn");
     if (mailto) {
@@ -312,14 +289,6 @@
     initLightbox();
     initCopyMail();
     initImgGuard();
-
-    // 字級用 clamp/vw 會隨視窗變動，縮放時重算標題對齊
-    let rAF;
-    window.addEventListener("resize", () => {
-      cancelAnimationFrame(rAF);
-      rAF = requestAnimationFrame(opticalAlignHeads);
-    }, { passive: true });
-    window.addEventListener("load", opticalAlignHeads);
   }
 
   if (document.readyState === "loading") {

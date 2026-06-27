@@ -11,6 +11,9 @@
   --gap: clamp(20px, 4vw, 56px);
   --radius: 4px;
 
+  /* 漢字大標的小標往右補多少（讓大、小標左緣對齊）。覺得不夠就調大、過頭就調小。 */
+  --sub-shift: 0.25rem;
+
   --font-jp: "Noto Sans JP", sans-serif;
   --font-en: "Space Grotesk", "Noto Sans JP", sans-serif;
 }
@@ -232,6 +235,8 @@ ul { list-style: none; }
   color: var(--accent);
   margin-top: .4rem;
 }
+/* 大標是漢字時（由 main.js 加 .cjk-title），小標往右補字身留白差，左緣才會對齊 */
+.section__head.cjk-title .section__sub { text-indent: var(--sub-shift); }
 
 .filters {
   display: flex;
