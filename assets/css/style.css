@@ -413,6 +413,39 @@ p, li { text-wrap: pretty; }
 }
 .biz-cta { margin-top: 2.8rem; }
 
+.price-list {
+  list-style: none;
+  margin: 0 0 1.2rem;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: .7rem 1rem;
+}
+@media (max-width: 560px) { .price-list { grid-template-columns: 1fr; } }
+.price-list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .75em 1.15em;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.price-list__k { color: var(--text); font-size: .95rem; }
+.price-list__v {
+  font-family: var(--font-en);
+  color: var(--accent);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.price-note {
+  font-size: .85rem;
+  color: var(--text-dim);
+  line-height: 1.75;
+  margin: 0 0 .4rem;
+}
+
 .contact__lead { color: var(--text-dim); margin-bottom: 2rem; }
 
 .howto {

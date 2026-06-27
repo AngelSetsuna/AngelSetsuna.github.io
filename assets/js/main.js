@@ -52,6 +52,18 @@
       mailto.href = `mailto:${addr}?subject=${subj}`;
     }
 
+    // 委託フォームのダウンロードを言語別に切り替え
+    const FORM_FILE = {
+      ja: "AngelSetsuna_Commission_Form_2026_JP.docx",
+      en: "AngelSetsuna_Commission_Form_2026_EN.docx",
+      zh: "AngelSetsuna_Commission_Form_2026.docx",
+    };
+    const file = FORM_FILE[lang] || FORM_FILE.ja;
+    $$("a[download]").forEach((a) => {
+      a.href = "form/" + file;
+      a.setAttribute("download", file);
+    });
+
     $$("#langSwitch button").forEach((b) =>
       b.classList.toggle("is-active", b.dataset.lang === lang)
     );
