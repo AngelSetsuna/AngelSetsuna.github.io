@@ -7,12 +7,13 @@
   --accent:    #ef7ca3;
   --accent-soft: rgba(239,124,163,.15);
 
-  --maxw: 1280px;
+  --maxw: 1200px;
   --gap: clamp(20px, 4vw, 56px);
   --radius: 4px;
 
-  /* 漢字大標的小標往右補多少（讓大、小標左緣對齊）。覺得不夠就調大、過頭就調小。 */
-  --sub-shift: 0.25rem;
+  /* 小標統一往右補多少，讓小標左緣對齊大標。大標(Space Grotesk)與小標(Noto Sans JP)
+     字體左邊界不同，全部小標固定偏左，故統一右移。不夠就調大、過頭就調小（1rem≈16px）。 */
+  --sub-shift: 0.4rem;
 
   --font-jp: "Noto Sans JP", sans-serif;
   --font-en: "Space Grotesk", "Noto Sans JP", sans-serif;
@@ -41,7 +42,7 @@ img {
   -webkit-touch-callout: none;
 }
 a { color: inherit; text-decoration: none; }
-ul { list-style: none; }
+ul, ol { list-style: none; }
 
 ::selection { background: var(--accent); color: #000; }
 
@@ -219,9 +220,13 @@ ul { list-style: none; }
 .section {
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: clamp(70px, 11vw, 150px) var(--gap);
+  padding: clamp(60px, 8vw, 118px) var(--gap);
 }
-.section--narrow { max-width: 880px; }
+/* 文字統一使用滿欄寬（與「關於」自介一致），不再各自限寬造成不同步。
+   text-wrap: pretty 改善斷行、避免句尾孤字；標題用 balance 讓多行更勻稱。 */
+p, li { text-wrap: pretty; }
+/* 短的多行文字（標題、欄位內小描述）用 balance，讓各行字數平均、不留孤字 */
+.section__title, .hero__name, .steps p, .track > p, .howto p, .about__block li { text-wrap: balance; }
 .section__head { margin-bottom: clamp(36px, 5vw, 64px); }
 .section__title {
   font-family: var(--font-en);
@@ -234,9 +239,8 @@ ul { list-style: none; }
   letter-spacing: .2em;
   color: var(--accent);
   margin-top: .4rem;
+  text-indent: var(--sub-shift);   /* 統一右移，對齊大標左緣 */
 }
-/* 大標是漢字時（由 main.js 加 .cjk-title），小標往右補字身留白差，左緣才會對齊 */
-.section__head.cjk-title .section__sub { text-indent: var(--sub-shift); }
 
 .filters {
   display: flex;
@@ -409,7 +413,7 @@ ul { list-style: none; }
 }
 .biz-cta { margin-top: 2.8rem; }
 
-.contact__lead { color: var(--text-dim); margin-bottom: 2rem; max-width: 60ch; }
+.contact__lead { color: var(--text-dim); margin-bottom: 2rem; }
 
 .howto {
   display: flex; flex-wrap: wrap; gap: 1.4rem;

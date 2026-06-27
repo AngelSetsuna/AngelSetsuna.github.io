@@ -45,13 +45,6 @@
       if (dict[key] != null) el.textContent = dict[key];
     });
 
-    // 大標為漢字時，其左側字身留白較大，小標需往右補一點才會對齊（值見 --sub-shift）
-    const CJK = /[　-ヿ㐀-鿿豈-﫿＀-￯]/;
-    $$(".section__head").forEach((head) => {
-      const title = head.querySelector(".section__title");
-      head.classList.toggle("cjk-title", !!title && CJK.test(title.textContent));
-    });
-
     const mailto = $("#mailtoBtn");
     if (mailto) {
       const subj = encodeURIComponent(dict["contact.mailSubject"] || "");
