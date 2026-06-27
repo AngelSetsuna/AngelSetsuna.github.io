@@ -8,11 +8,11 @@
 
 const I18N = {
   ja: {
-    "nav.works": "Works",
-    "nav.about": "About",
-    "nav.business": "Business",
-    "nav.commission": "Commission",
-    "nav.contact": "Contact",
+    "nav.works": "作品",
+    "nav.about": "紹介",
+    "nav.business": "法人のご依頼",
+    "nav.commission": "個人のご依頼",
+    "nav.contact": "お問い合わせ",
 
     "business.title": "Business",
     "business.sub": "商業・法人のご依頼",
@@ -41,7 +41,6 @@ const I18N = {
     "business.cta": "お問い合わせへ",
 
     "hero.role": "キャラクターデザイン / ゲームイラスト",
-    "hero.tag": "作品制作のご依頼を承っております。",
     "hero.cta": "お仕事のご依頼",
 
     "works.title": "Works",
@@ -128,7 +127,6 @@ const I18N = {
     "business.cta": "Get in Touch",
 
     "hero.role": "Character Design / Game Illustration",
-    "hero.tag": "Open for commissions and professional inquiries.",
     "hero.cta": "Request a Commission",
 
     "works.title": "Works",
@@ -215,7 +213,6 @@ const I18N = {
     "business.cta": "前往洽詢",
 
     "hero.role": "角色設計 / 遊戲插畫",
-    "hero.tag": "目前開放接案與商業合作洽詢。",
     "hero.cta": "委託洽詢",
 
     "works.title": "作品",

@@ -52,10 +52,6 @@
       const key = el.getAttribute("data-i18n");
       if (dict[key] != null) el.textContent = dict[key];
     });
-    $$("[data-i18n-ph]").forEach((el) => {
-      const key = el.getAttribute("data-i18n-ph");
-      if (dict[key] != null) el.setAttribute("placeholder", dict[key]);
-    });
 
     // mailto 按鈕：依語言帶入信件主旨
     const mailto = $("#mailtoBtn");

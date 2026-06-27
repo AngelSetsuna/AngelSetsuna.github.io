@@ -2,10 +2,6 @@
 node_modules/
 **/node_modules/
 
-# 建置產物
-design-system/dist/
-design-system/ds-bundle/
-
 # 系統與編輯器檔案
 .DS_Store
 Thumbs.db
