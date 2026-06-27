@@ -1,4 +1,3 @@
-// 極簡靜態伺服器 — 把這個資料夾當網站跑起來
 import http from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { extname, join, normalize } from 'node:path';
@@ -19,7 +18,10 @@ http.createServer(async (req, res) => {
     if (p === '/') p = '/index.html';
     const file = join(ROOT, normalize(p).replace(/^(\.\.[/\\])+/, ''));
     const data = await readFile(file);
-    res.writeHead(200, { 'Content-Type': TYPES[extname(file).toLowerCase()] || 'application/octet-stream' });
+    res.writeHead(200, {
+      'Content-Type': TYPES[extname(file).toLowerCase()] || 'application/octet-stream',
+      'Cache-Control': 'no-store, max-age=0',
+    });
     res.end(data);
   } catch {
     res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });

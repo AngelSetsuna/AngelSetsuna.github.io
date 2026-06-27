@@ -1,8 +1,0 @@
-把你的頭貼命名為 avatar.jpg，放在這個 assets/ 資料夾裡。
-
-建議規格：
-- 正方形（例如 400×400px），會自動裁成圓形
-- JPG 或 PNG 皆可（PNG 的話檔名要改成 avatar.png，並到 index.html 把 heroAvatar 的 src 改成 assets/avatar.png）
-
-還沒放之前，網站會顯示粉色「AS」圓形佔位圖，不會破圖。
-放好後可刪掉這個說明檔。

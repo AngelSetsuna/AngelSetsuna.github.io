@@ -1,11 +1,3 @@
-/* =========================================================
-   介面文字翻譯（三語）
-   ---------------------------------------------------------
-   想改首頁標語、自介、流程說明等「文字內容」就改這裡。
-   作品的標題不在這裡，在 works.js。
-   每個 key 對應 index.html 裡的 data-i18n="..." 屬性。
-   ========================================================= */
-
 const I18N = {
   ja: {
     "nav.works": "作品",
@@ -40,7 +32,7 @@ const I18N = {
     "business.term4": "制作実績としての公開可否は、事前にご相談ください。",
     "business.cta": "お問い合わせへ",
 
-    "hero.role": "キャラクターデザイン / ゲームイラスト",
+    "hero.role": "イラストレーション / キャラクターデザイン",
     "hero.cta": "お仕事のご依頼",
 
     "works.title": "Works",
@@ -49,7 +41,7 @@ const I18N = {
 
     "about.title": "About",
     "about.sub": "紹介",
-    "about.lead": "二次元・美少女イラストを中心に、キャラクターデザインからゲーム用立ち絵、書籍カバーまで幅広く制作しています。",
+    "about.lead": "二次元のビジュアルアート制作を専門とし、「ドラマティックな光と影の演出」と「衣装や素材感の緻密な描写」を強みとしております。幅広いジャンルに対応した商業クオリティの仕上げ力を備え、ゲーム宣伝イラスト、ソーシャルゲームのカードイラスト、立ち絵、ライトノベル挿絵、Vtuber 関連ビジュアルのデザインまで幅広くお引き受けいたします。プロジェクトのご要望に応じて、芸術性と訴求力を両立したビジュアルをご提案いたします。現在、各種商業案件および個人向けのプレミアム委託を承っております。",
     "about.skillsTitle": "対応分野",
     "about.skill1": "キャラクターデザイン",
     "about.skill2": "ゲーム用立ち絵・イベントCG",
@@ -62,16 +54,16 @@ const I18N = {
 
     "commission.title": "Commission",
     "commission.sub": "ご依頼の流れ",
-    "commission.s1t": "表單記入",
-    "commission.s1d": "委託表單をダウンロードし、必要事項をご記入ください。",
+    "commission.s1t": "フォーム記入",
+    "commission.s1d": "ご依頼フォームをダウンロードし、必要事項をご記入ください。",
     "commission.s2t": "確認・着手金",
     "commission.s2d": "日程が近づきましたらご連絡し、総額の50%を着手金として頂きます。",
     "commission.s3t": "ラフ制作",
     "commission.s3d": "ラフをご確認いただきながら制作します（無料修正3回）。",
     "commission.s4t": "納品",
     "commission.s4d": "残金ご入金後、高解像度データをGmailにてお送りします（完成図 無料修正1回）。",
-    "commission.price": "料金は用途・加購項目・商用利用範囲に応じて異なります。詳細・規約は委託表單をご確認ください。制作物の著作権は作者が保有し、委託者は指定用途の使用許諾を取得します。",
-    "commission.download": "委託表單をダウンロード",
+    "commission.price": "料金は用途・追加項目・商用利用範囲に応じて異なります。詳細・規約はご依頼フォームをご確認ください。制作物の著作権は作者が保有し、ご依頼者は指定用途の使用許諾を取得します。",
+    "commission.download": "ご依頼フォームをダウンロード",
 
     "contact.title": "Contact",
     "contact.sub": "お問い合わせ",
@@ -81,11 +73,11 @@ const I18N = {
     "contact.bizDesc": "ゲーム・出版・宣伝用途など。用途・ご予算・利用範囲に応じてお見積もりいたします。請求書の発行も可能です。",
     "contact.bizBtn": "メールで相談する",
     "contact.persTitle": "個人のご依頼",
-    "contact.persDesc": "委託表單をダウンロードし、ご記入のうえ下記Gmailへ送信してください。",
-    "contact.h1": "委託表單をダウンロード",
+    "contact.persDesc": "ご依頼フォームをダウンロードし、ご記入のうえ下記Gmailへ送信してください。",
+    "contact.h1": "ご依頼フォームをダウンロード",
     "contact.h2": "必要事項をご記入",
     "contact.h3": "下記Gmailへ送信",
-    "contact.download": "委託表單をダウンロード",
+    "contact.download": "ご依頼フォームをダウンロード",
     "contact.mailSubject": "イラスト制作のご依頼（商業・法人）",
     "contact.copy": "コピー",
     "contact.copied": "コピーしました",
@@ -126,7 +118,7 @@ const I18N = {
     "business.term4": "Please discuss in advance whether the work may be shown in my portfolio.",
     "business.cta": "Get in Touch",
 
-    "hero.role": "Character Design / Game Illustration",
+    "hero.role": "Illustration / Character Design",
     "hero.cta": "Request a Commission",
 
     "works.title": "Works",
@@ -135,7 +127,7 @@ const I18N = {
 
     "about.title": "About",
     "about.sub": "Profile",
-    "about.lead": "Specializing in anime-style character illustration — from character design to game CG and book covers.",
+    "about.lead": "Specializing in anime-style visual art, with a signature focus on dramatic lighting and atmosphere and the detailed rendering of clothing, fabrics, and materials. I offer complete, production-ready commercial work across a wide range of fields, including game key visuals, mobile game card art, character standees (tachie), light novel illustrations, and Vtuber visual design. Tailoring each piece to the project's needs, I deliver visuals that balance artistic quality with market appeal. Currently open for commercial work and premium personal commissions.",
     "about.skillsTitle": "Services",
     "about.skill1": "Character Design",
     "about.skill2": "Game Standing CG / Event CG",
@@ -212,7 +204,7 @@ const I18N = {
     "business.term4": "作品能否作為實績公開，請事前洽談。",
     "business.cta": "前往洽詢",
 
-    "hero.role": "角色設計 / 遊戲插畫",
+    "hero.role": "插畫 / 角色設計",
     "hero.cta": "委託洽詢",
 
     "works.title": "作品",
@@ -221,7 +213,7 @@ const I18N = {
 
     "about.title": "關於",
     "about.sub": "Profile",
-    "about.lead": "專注於二次元・美少女插畫，承接從角色設計、遊戲立繪到書籍封面等各類商業案件。",
+    "about.lead": "專注於二次元視覺藝術創作，擅長以「強烈的光影氛圍」與「精緻的服飾材質刻畫」打造畫面張力。具備跨領域的完整商業完稿能力，承接遊戲宣傳圖、手遊卡面、角色立繪、輕小說插畫及 Vtuber 相關視覺設計，並能依專案需求，提供兼具藝術感與市場吸引力的視覺方案。目前開放各類商業合作與個人高級委託。",
     "about.skillsTitle": "接案範圍",
     "about.skill1": "角色設計",
     "about.skill2": "遊戲立繪・事件 CG",
@@ -266,13 +258,10 @@ const I18N = {
   },
 };
 
-/* 社群連結 — 把 # 換成你的實際網址即可。留 "" 或刪掉該行就不顯示。 */
 const SOCIAL = [
   { label: "X",          url: "https://x.com/" },
   { label: "pixiv",      url: "https://www.pixiv.net/" },
   { label: "Instagram",  url: "https://www.instagram.com/" },
   { label: "Facebook",   url: "https://www.facebook.com/" },
   { label: "Threads",    url: "https://www.threads.net/" },
-  // ArtStation 開好後，把下面這行的註解拿掉並填網址：
-  // { label: "ArtStation", url: "https://www.artstation.com/" },
 ];

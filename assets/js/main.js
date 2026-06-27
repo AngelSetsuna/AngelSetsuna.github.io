@@ -1,17 +1,12 @@
-/* =========================================================
-   主程式 — 一般情況下你不需要改這個檔案
-   ========================================================= */
 (function () {
   "use strict";
 
-  // 目前語言：優先讀使用者上次選的，預設日文
   let lang = localStorage.getItem("as_lang") || "ja";
   let activeCat = "all";
 
   const $  = (s, ctx = document) => ctx.querySelector(s);
   const $$ = (s, ctx = document) => Array.from(ctx.querySelectorAll(s));
 
-  // 圖片載入失敗時的暗色佔位圖（你放上真圖後就不會出現）
   const PLACEHOLDER =
     "data:image/svg+xml;charset=utf-8," +
     encodeURIComponent(
@@ -23,7 +18,6 @@
     );
   const onErr = `onerror="this.onerror=null;this.src='${PLACEHOLDER}'"`;
 
-  // 頭貼還沒放上去時的圓形佔位（顯示 AS 字樣）
   const AVATAR_PLACEHOLDER =
     "data:image/svg+xml;charset=utf-8," +
     encodeURIComponent(
@@ -33,7 +27,6 @@
       </svg>`
     );
 
-  // 社群品牌圖標（key 對應 SOCIAL 的 label 轉小寫）
   const ICONS = {
     x: `<svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>`,
     pixiv: `<svg viewBox="0 0 24 24"><path d="M4.935 0A4.924 4.924 0 0 0 0 4.935v14.13A4.924 4.924 0 0 0 4.935 24h14.13A4.924 4.924 0 0 0 24 19.065V4.935A4.924 4.924 0 0 0 19.065 0zm7.81 4.547c2.181 0 4.058.676 5.399 1.847a6.118 6.118 0 0 1 2.116 4.66c.005 1.854-.88 3.476-2.257 4.563-1.375 1.092-3.225 1.697-5.258 1.697-2.314 0-4.46-.842-4.46-.842v2.917c.03.022 1.116.22 1.116 1.36 0 .628-.512 1.137-1.144 1.137l-2.946.001c-.633 0-1.146-.51-1.146-1.137 0-1.058.94-1.282 1.117-1.342V8.475c-.92.85-1.394 1.541-1.498 1.69-.151.22-.396.35-.66.353a.798.798 0 0 1-.474-.153c-.353-.262-.428-.76-.167-1.113.06-.082 1.507-2.005 3.957-3.205 1.444-.708 3.13-1.046 4.853-1.046zm-.187 1.741c-1.342 0-2.498.348-3.43.864v7.567s1.94.819 4.024.819c1.561 0 2.91-.448 3.875-1.211.967-.766 1.553-1.81 1.55-3.205a4.376 4.376 0 0 0-1.518-3.339c-1.003-.876-2.444-1.495-4.5-1.495z"/></svg>`,
@@ -43,7 +36,29 @@
     artstation: `<svg viewBox="0 0 24 24"><path d="M0 17.723l2.027 3.505h.001a2.424 2.424 0 0 0 2.164 1.333h13.457l-2.792-4.838H0zm24-2.992a2.424 2.424 0 0 0-.359-1.266L15.547 1.27A2.424 2.424 0 0 0 13.471 0H9.626l8.027 13.953-2.054 3.553 1.79 3.101 6.611-11.45A2.424 2.424 0 0 0 24 14.731zM10.624 13.93l-2.768-4.79-2.789 4.79z"/></svg>`,
   };
 
-  /* ---------- 套用介面文字 ---------- */
+  // 對齊大／小標的「視覺左緣」。CJK 與拉丁字身留白不同、對齊基準也不同，
+  // 故量測各自首字的左側字身留白（actualBoundingBoxLeft），用 text-indent
+  // 把小標的墨水左緣推到與大標一致。三語、所有區塊自動適用。
+  function opticalAlignHeads() {
+    const ctx = document.createElement("canvas").getContext("2d");
+    if (!ctx) return;
+    const bearing = (el) => {
+      const txt = el.textContent.trim();
+      if (!txt) return 0;
+      const cs = getComputedStyle(el);
+      ctx.font = `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
+      const abl = ctx.measureText(txt).actualBoundingBoxLeft;
+      return (typeof abl === "number" && isFinite(abl)) ? Math.abs(abl) : 0;
+    };
+    $$(".section__head").forEach((head) => {
+      const title = head.querySelector(".section__title");
+      const sub = head.querySelector(".section__sub");
+      if (!title || !sub) return;
+      const delta = bearing(title) - bearing(sub);
+      sub.style.textIndent = `${delta}px`;
+    });
+  }
+
   function applyI18n() {
     const dict = I18N[lang] || I18N.ja;
     document.documentElement.lang = lang;
@@ -53,7 +68,13 @@
       if (dict[key] != null) el.textContent = dict[key];
     });
 
-    // mailto 按鈕：依語言帶入信件主旨
+    // 光學左緣對齊：字體載入後量測每個標題／小標首字的左留白並補償
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(opticalAlignHeads);
+    } else {
+      opticalAlignHeads();
+    }
+
     const mailto = $("#mailtoBtn");
     if (mailto) {
       const subj = encodeURIComponent(dict["contact.mailSubject"] || "");
@@ -61,18 +82,14 @@
       mailto.href = `mailto:${addr}?subject=${subj}`;
     }
 
-    // 切換語言按鈕高亮
     $$("#langSwitch button").forEach((b) =>
       b.classList.toggle("is-active", b.dataset.lang === lang)
     );
   }
 
-  /* ---------- 渲染篩選列 ---------- */
   function renderFilters() {
     const filters = $("#filters");
-    // 統計實際出現的分類
     const used = [...new Set(WORKS.map((w) => w.category))];
-    // 分類少於 2 種就不顯示篩選列
     if (used.length < 2) { filters.hidden = true; return; }
 
     filters.hidden = false;
@@ -95,7 +112,6 @@
     );
   }
 
-  /* ---------- 渲染作品牆 ---------- */
   function renderGrid() {
     const grid = $("#grid");
     const list = WORKS.filter((w) => activeCat === "all" || w.category === activeCat);
@@ -116,7 +132,6 @@
       })
       .join("");
 
-    // 點圖開 Lightbox
     $$("#grid .card").forEach((card) =>
       card.addEventListener("click", () => openLightbox(Number(card.dataset.index), list))
     );
@@ -124,7 +139,6 @@
     revealOnScroll();
   }
 
-  /* ---------- 捲動淡入 ---------- */
   function revealOnScroll() {
     const io = new IntersectionObserver(
       (entries) => {
@@ -140,7 +154,6 @@
     $$("#grid .card").forEach((c) => io.observe(c));
   }
 
-  /* ---------- Lightbox ---------- */
   let lbList = [];
   let lbIndex = 0;
 
@@ -172,11 +185,9 @@
     $("#lbCap").textContent = meta ? `${title} — ${meta}` : title;
   }
 
-  /* ---------- Hero 幻燈片 + 頭貼 ---------- */
   function renderHero() {
     const wrap = $("#heroSlides");
     if (wrap) {
-      // 若有任何作品標了 hero:true，就只播那些；否則預設前 6 張
       const flagged = WORKS.filter((w) => w.hero === true);
       const imgs = (flagged.length ? flagged : WORKS).slice(0, 8);
       wrap.innerHTML = imgs
@@ -196,7 +207,6 @@
         }, 4500);
       }
     }
-    // 頭貼：載入失敗時顯示 AS 佔位
     const av = $("#heroAvatar");
     if (av) {
       av.onerror = () => { av.onerror = null; av.src = AVATAR_PLACEHOLDER; };
@@ -204,7 +214,6 @@
     }
   }
 
-  /* ---------- Hero 社群圖標 ---------- */
   function renderHeroSocial() {
     const wrap = $("#heroSocial");
     if (!wrap) return;
@@ -218,7 +227,6 @@
       .join("");
   }
 
-  /* ---------- 社群連結（頁尾文字） ---------- */
   function renderSocial() {
     const wrap = $("#social");
     wrap.innerHTML = (SOCIAL || [])
@@ -227,7 +235,6 @@
       .join("");
   }
 
-  /* ---------- 導覽列 / 漢堡選單 / 捲動狀態 ---------- */
   function initNav() {
     const nav = $("#nav");
     const onScroll = () => nav.classList.toggle("is-scrolled", window.scrollY > 40);
@@ -241,7 +248,6 @@
     );
   }
 
-  /* ---------- 複製 Email ---------- */
   function initCopyMail() {
     const btn = $("#copyMail");
     if (!btn) return;
@@ -253,11 +259,10 @@
         const old = btn.textContent;
         btn.textContent = dict["contact.copied"] || "OK";
         setTimeout(() => (btn.textContent = dict["contact.copy"] || old), 1600);
-      } catch (e) { /* 忽略：部分瀏覽器需 https */ }
+      } catch (e) {}
     });
   }
 
-  /* ---------- 語言切換 ---------- */
   function initLang() {
     $$("#langSwitch button").forEach((btn) =>
       btn.addEventListener("click", () => {
@@ -270,7 +275,6 @@
     );
   }
 
-  /* ---------- Lightbox 事件 ---------- */
   function initLightbox() {
     $("#lbClose").addEventListener("click", closeLightbox);
     $("#lbPrev").addEventListener("click", () => moveLightbox(-1));
@@ -286,7 +290,6 @@
     });
   }
 
-  /* ---------- 圖片防護（嚇阻右鍵另存／拖曳，非 100% 防堵） ---------- */
   function initImgGuard() {
     document.addEventListener("contextmenu", (e) => {
       if (e.target && e.target.tagName === "IMG") e.preventDefault();
@@ -296,7 +299,6 @@
     });
   }
 
-  /* ---------- 啟動 ---------- */
   function init() {
     $("#year").textContent = new Date().getFullYear();
     applyI18n();
@@ -310,6 +312,14 @@
     initLightbox();
     initCopyMail();
     initImgGuard();
+
+    // 字級用 clamp/vw 會隨視窗變動，縮放時重算標題對齊
+    let rAF;
+    window.addEventListener("resize", () => {
+      cancelAnimationFrame(rAF);
+      rAF = requestAnimationFrame(opticalAlignHeads);
+    }, { passive: true });
+    window.addEventListener("load", opticalAlignHeads);
   }
 
   if (document.readyState === "loading") {
