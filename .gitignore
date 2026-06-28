@@ -8,3 +8,6 @@ Thumbs.db
 
 # build output
 site-standalone.html
+
+# 上傳工具的錯誤紀錄
+tools/last-error.log

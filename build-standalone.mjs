@@ -15,7 +15,9 @@ const works = await read('assets/js/works.js');
 const i18n = await read('assets/js/i18n.js');
 const main = await read('assets/js/main.js');
 
-const images = ['assets/avatar.png', 'assets/favicon.png', 'assets/apple-touch-icon.png', 'works/01.jpg', 'works/02.jpg', 'works/03.jpg', 'works/04.jpg', 'works/05.jpg', 'works/06.jpg'];
+// 作品圖自動從 works.js 取得，新增作品時這裡不需手動維護
+const workImages = [...works.matchAll(/image:\s*"([^"]+)"/g)].map((m) => m[1]);
+const images = ['assets/avatar.png', 'assets/favicon.png', 'assets/apple-touch-icon.png', ...workImages];
 const map = {};
 for (const img of images) map[img] = await dataUri(img);
 

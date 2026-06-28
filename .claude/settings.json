@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"D:/奈奈畫圖/奈奈畫圖/奈奈畫圖/網站/.claude/hooks/check-memory-sync.mjs\""
+          }
+        ]
+      }
+    ]
+  }
+}
