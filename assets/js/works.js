@@ -1,7 +1,7 @@
 const CATEGORIES = {
   all:       { ja: "すべて",          en: "All",        zh: "全部" },
-  character: { ja: "キャラデザイン",   en: "Character",  zh: "角色設計" },
   fanart:    { ja: "二次創作",        en: "Fan Art",    zh: "二次創作" },
+  character: { ja: "キャラデザイン",   en: "Character",  zh: "角色設計" },
   game:      { ja: "ゲーム",          en: "Game",       zh: "遊戲用" },
   cover:      { ja: "書籍カバー",       en: "Book Cover", zh: "書籍封面" },
   commission: { ja: "依頼",            en: "Commission", zh: "委託" },
