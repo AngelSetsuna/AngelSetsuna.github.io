@@ -9,15 +9,6 @@ const CATEGORIES = {
 
 const WORKS = [
   {
-    image: "works/06.jpg",
-    category: "commission",
-    title: { ja: "我妻乙葉", en: "Otoha Agatsuma", zh: "我妻乙葉" },
-    client: "Commission",
-    role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
-    year: 2026,
-    focus: "center",
-  },
-  {
     image: "works/03.jpg",
     category: "character",
     title: { ja: "リバーレリオ", en: "Liberalio", zh: "莉貝雷利奧" },
@@ -57,5 +48,14 @@ const WORKS = [
     client: "Personal",
     role:  { ja: "デザイン〜イラスト", en: "Design–Illustration", zh: "設計至完稿" },
     year: 2025,
+  },
+  {
+    // 直圖：不設 focus，沿用全站「偏上」預設（hero 16% / 卡片 12%）以顯示上半部
+    image: "works/06.jpg",
+    category: "commission",
+    title: { ja: "我妻乙葉", en: "Otoha Agatsuma", zh: "我妻乙葉" },
+    client: "Commission",
+    role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
+    year: 2026,
   },
 ];

@@ -267,6 +267,8 @@ p, li { text-wrap: pretty; }
   transition: opacity .6s ease, transform .6s ease;
 }
 .card.is-in { opacity: 1; transform: none; }
+/* 全站共識：所有圖以 object-fit:cover 裁切，焦點固定偏上，直圖一律顯示上半部（臉/頭）。
+   橫圖為例外，可在 works.js 用 focus 覆蓋（例：03 リバーレリオ 為橫圖設 center）。 */
 .card img {
   width: 100%; height: 100%;
   object-fit: cover;
