@@ -15,7 +15,7 @@ const works = await read('assets/js/works.js');
 const i18n = await read('assets/js/i18n.js');
 const main = await read('assets/js/main.js');
 
-const images = ['assets/avatar.png', 'assets/favicon.png', 'assets/apple-touch-icon.png', 'works/01.jpg', 'works/02.jpg', 'works/03.jpg', 'works/04.jpg', 'works/05.jpg'];
+const images = ['assets/avatar.png', 'assets/favicon.png', 'assets/apple-touch-icon.png', 'works/01.jpg', 'works/02.jpg', 'works/03.jpg', 'works/04.jpg', 'works/05.jpg', 'works/06.jpg'];
 const map = {};
 for (const img of images) map[img] = await dataUri(img);
 
