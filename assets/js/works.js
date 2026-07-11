@@ -59,4 +59,13 @@ const WORKS = [
     role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
     year: 2026,
   },
+  {
+    image: "works/07.jpg",
+    category: "fanart",
+    title: { ja: "シンデレラ:クリスタルウェーブ", en: "Cinderella: Crystal Wave", zh: "灰姑娘：琉璃波光" },
+    client: "Fan Art",
+    role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
+    year: 2026,
+    hero: true,
+  },
 ];
