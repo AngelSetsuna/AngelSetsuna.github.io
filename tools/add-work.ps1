@@ -179,13 +179,6 @@ $yearBox.Location = New-Object Drawing.Point(270, $y)
 $yearBox.Text = (Get-Date).Year.ToString()
 $y += 36
 
-$heroChk = New-Object Windows.Forms.CheckBox
-$heroChk.Text = '放進首頁幻燈片（hero）'
-$heroChk.AutoSize = $true
-$heroChk.Location = New-Object Drawing.Point(20, $y)
-$form.Controls.Add($heroChk)
-$y += 26
-
 $pushChk = New-Object Windows.Forms.CheckBox
 $pushChk.Text = '完成後自動 push 上線（GitHub Pages）'
 $pushChk.Checked = $true
@@ -264,7 +257,6 @@ $btnGo.Add_Click({
         ('    year: ' + $year + ',')
       )
       if ($script:isLandsc) { $lines += '    focus: "center",' }
-      if ($heroChk.Checked) { $lines += '    hero: true,' }
       $lines += '  },'
 
       $text = [IO.File]::ReadAllText($worksJs)
