@@ -66,6 +66,5 @@ const WORKS = [
     client: "Fan Art",
     role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
     year: 2026,
-    hero: true,
   },
 ];
