@@ -67,4 +67,12 @@ const WORKS = [
     role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
     year: 2026,
   },
+  {
+    image: "works/08.jpg",
+    category: "cover",
+    title: { ja: "小説表紙の仕事絵", en: "Commercial Novel Cover Illustration", zh: "小說封面商業委託" },
+    client: "Commission",
+    role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
+    year: 2026,
+  },
 ];
