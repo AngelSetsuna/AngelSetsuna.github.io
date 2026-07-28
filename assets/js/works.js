@@ -15,7 +15,7 @@ const WORKS = [
     title: { ja: "リバーレリオ", en: "Liberalio", zh: "莉貝雷利奧" },
     client: "Fan Art",
     role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
-    year: 2025,
+    year: 2026,
     focus: "center",
   },
   {
@@ -24,7 +24,7 @@ const WORKS = [
     title: { ja: "初音ミク", en: "Hatsune Miku", zh: "初音未來" },
     client: "Fan Art",
     role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
-    year: 2025,
+    year: 2026,
   },
   {
     image: "works/01.jpg",
@@ -32,7 +32,7 @@ const WORKS = [
     title: { ja: "アニス", en: "Anis", zh: "阿妮斯" },
     client: "Fan Art",
     role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
-    year: 2025,
+    year: 2026,
   },
   {
     image: "works/04.jpg",
