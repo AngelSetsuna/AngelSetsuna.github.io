@@ -75,4 +75,12 @@ const WORKS = [
     role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
     year: 2026,
   },
+  {
+    image: "works/09.jpg",
+    category: "character",
+    title: { ja: "狙い", en: "Fixation", zh: "鎖定" },
+    client: "Personal",
+    role:  { ja: "デザイン〜イラスト", en: "Design–Illustration", zh: "設計至完稿" },
+    year: 2026,
+  },
 ];
