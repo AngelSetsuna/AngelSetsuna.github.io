@@ -10,10 +10,6 @@ const CATEGORIES = {
 
 const WORKS = [
   {
-    image: "works/04.jpg",
-    category: "fanart",
-    title: { ja: "大鳳", en: "Taihou", zh: "大鳳" },
-  {
     image: "works/11.jpg",
     category: "fanart",
     title: { ja: "オデット", en: "Odette", zh: "奧黛塔" },
@@ -22,6 +18,10 @@ const WORKS = [
     year: 2026,
     sortOrder: 5,
   },
+  {
+    image: "works/04.jpg",
+    category: "fanart",
+    title: { ja: "大鳳", en: "Taihou", zh: "大鳳" },
     client: "Fan Art",
     role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
     year: 2025,

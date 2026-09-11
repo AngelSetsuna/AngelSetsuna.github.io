@@ -17,6 +17,21 @@ function Invoke-Git([string[]]$GitArgs) {
 Write-Host ''
 Write-Host '=== 發布網站 ===' -ForegroundColor Cyan
 
+# 發布前先檢查 JavaScript 語法，避免空白網站被推送上線
+foreach ($jsFile in @('assets/js/works.js', 'assets/js/i18n.js', 'assets/js/main.js')) {
+  $prev = $ErrorActionPreference
+  $ErrorActionPreference = 'Continue'
+  try { $syntaxOutput = & node --check $jsFile 2>&1; $syntaxExit = $LASTEXITCODE }
+  finally { $ErrorActionPreference = $prev }
+  if ($syntaxExit -ne 0) {
+    Write-Host ''
+    Write-Host ("無法發布：$jsFile 格式錯誤。") -ForegroundColor Red
+    Write-Host (($syntaxOutput | ForEach-Object { $_.ToString() }) -join "`n")
+    Read-Host '按 Enter 關閉'
+    exit 1
+  }
+}
+
 $changes = Invoke-Git @('status', '--porcelain')
 if (-not $changes) {
   Write-Host '目前沒有任何變更，網站已是最新。' -ForegroundColor Green

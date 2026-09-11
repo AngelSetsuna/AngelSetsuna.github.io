@@ -254,6 +254,10 @@ $btnGo.Add_Click({
         $sortOrder = (($sortMatches | ForEach-Object { [int]$_.Groups[1].Value } | Measure-Object -Maximum).Maximum) + 1
       }
 
+      $worksStart = [regex]::Match($text, 'const WORKS = \[(\r?\n)')
+      if (-not $worksStart.Success) { throw 'works.js 找不到正確的 "const WORKS = [" 開頭' }
+      $nl = $worksStart.Groups[1].Value
+
       $lines = @(
         '  {',
         ('    image: "' + $imgField + '",'),
@@ -267,15 +271,27 @@ $btnGo.Add_Click({
       if ($script:isLandsc) { $lines += '    focus: "center",' }
       $lines += '  },'
 
-      $nl = if ($text -match "`r`n") { "`r`n" } else { "`n" }
       $entry = ($lines -join $nl) + $nl
-      $marker = 'const WORKS = ['
-      $idx = $text.IndexOf($marker)
-      if ($idx -lt 0) { throw 'works.js 找不到 "const WORKS = ["' }
-      $idx = $text.IndexOf($nl, $idx + $marker.Length)
-      if ($idx -lt 0) { throw 'works.js 的 WORKS 開頭格式不正確' }
-      $newText = $text.Insert($idx + $nl.Length, $entry)
+      $newText = $text.Insert($worksStart.Index + $worksStart.Length, $entry)
       $enc = New-Object Text.UTF8Encoding($false)  # 無 BOM
+
+      # 先以暫存檔驗證語法，避免格式錯誤的作品清單被 commit / push 上線
+      $tempJs = Join-Path ([IO.Path]::GetTempPath()) ('angel-setsuna-works-' + [guid]::NewGuid().ToString('N') + '.js')
+      [IO.File]::WriteAllText($tempJs, $newText, $enc)
+      try {
+        $prev = $ErrorActionPreference
+        $ErrorActionPreference = 'Continue'
+        try { $syntaxOutput = & node --check $tempJs 2>&1; $syntaxExit = $LASTEXITCODE }
+        finally { $ErrorActionPreference = $prev }
+        if ($syntaxExit -ne 0) {
+          if (Test-Path -LiteralPath $dest) { Remove-Item -LiteralPath $dest -Force }
+          throw ('作品資料格式檢查失敗：' + (($syntaxOutput | ForEach-Object { $_.ToString() }) -join "`n"))
+        }
+      }
+      finally {
+        if (Test-Path -LiteralPath $tempJs) { Remove-Item -LiteralPath $tempJs -Force }
+      }
+
       [IO.File]::WriteAllText($worksJs, $newText, $enc)
 
       # 3) git add / commit / push
