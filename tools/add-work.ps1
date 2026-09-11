@@ -247,6 +247,13 @@ $btnGo.Add_Click({
       $year = ($yearBox.Text.Trim() -replace '\D', '')
       if (-not $year) { $year = (Get-Date).Year.ToString() }
 
+      $text = [IO.File]::ReadAllText($worksJs)
+      $sortOrder = 1
+      $sortMatches = [regex]::Matches($text, '(?m)^\s*sortOrder:\s*(\d+),')
+      if ($sortMatches.Count -gt 0) {
+        $sortOrder = (($sortMatches | ForEach-Object { [int]$_.Groups[1].Value } | Measure-Object -Maximum).Maximum) + 1
+      }
+
       $lines = @(
         '  {',
         ('    image: "' + $imgField + '",'),
@@ -254,17 +261,20 @@ $btnGo.Add_Click({
         ('    title: { ja: "' + $ja + '", en: "' + $en + '", zh: "' + $zh + '" },'),
         ('    client: "' + $client + '",'),
         ('    role:  { ja: "' + (Esc $r[0]) + '", en: "' + (Esc $r[1]) + '", zh: "' + (Esc $r[2]) + '" },'),
-        ('    year: ' + $year + ',')
+        ('    year: ' + $year + ','),
+        ('    sortOrder: ' + $sortOrder + ',')
       )
       if ($script:isLandsc) { $lines += '    focus: "center",' }
       $lines += '  },'
 
-      $text = [IO.File]::ReadAllText($worksJs)
       $nl = if ($text -match "`r`n") { "`r`n" } else { "`n" }
       $entry = ($lines -join $nl) + $nl
-      $idx = $text.LastIndexOf('];')
-      if ($idx -lt 0) { throw 'works.js 找不到結尾的 "];"' }
-      $newText = $text.Insert($idx, $entry)
+      $marker = 'const WORKS = ['
+      $idx = $text.IndexOf($marker)
+      if ($idx -lt 0) { throw 'works.js 找不到 "const WORKS = ["' }
+      $idx = $text.IndexOf($nl, $idx + $marker.Length)
+      if ($idx -lt 0) { throw 'works.js 的 WORKS 開頭格式不正確' }
+      $newText = $text.Insert($idx + $nl.Length, $entry)
       $enc = New-Object Text.UTF8Encoding($false)  # 無 BOM
       [IO.File]::WriteAllText($worksJs, $newText, $enc)
 

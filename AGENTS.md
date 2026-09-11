@@ -10,7 +10,7 @@
 ## 檔案分工
 | 檔案 | 用途 |
 |------|------|
-| `index.html` | 單頁全站（hero / works / about / business / commission / contact）。可見文字用 `data-i18n="key"`，文案內容在 i18n.js。含 SEO（og、JSON-LD）。OG 圖寫死 `works/01.jpg`。 |
+| `index.html` | 單頁全站（hero / works / about / business / commission / contact）。可見文字用 `data-i18n="key"`，文案內容在 i18n.js。含 SEO（og、JSON-LD）。OG 圖寫死 `works/03.jpg`。 |
 | `assets/js/works.js` | **新增作品唯一要改的檔**。`CATEGORIES` 分類 + `WORKS` 作品陣列。 |
 | `assets/js/i18n.js` | `I18N` 三語文案 + `SOCIAL` 社群連結。 |
 | `assets/js/main.js` | 渲染邏輯（grid / hero 幻燈片 / lightbox / 語言切換 / 圖片右鍵防護）。一般不動。 |
@@ -20,7 +20,7 @@
 
 ## 新增作品
 
-**建議用一鍵工具**：雙擊根目錄 `新增作品.bat`（邏輯在 `tools/add-work.ps1`）。它會：自動壓縮圖片（長邊 ≤2000px、JPEG Q82）→ 存成 `works/NN.jpg` → 自動依長寬判斷直/橫圖套用 focus → 寫入 `works.js` → git commit/push。
+**建議用一鍵工具**：雙擊根目錄 `新增作品.bat`（邏輯在 `tools/add-work.ps1`）。它會：自動壓縮圖片（長邊 ≤2000px、JPEG Q82）→ 存成 `works/NN.jpg` → 自動依長寬判斷直/橫圖套用 focus → 加到 `works.js` 最上方 → git commit/push。
 
 手動新增時，在 `WORKS` 加一筆物件：
 ```js
@@ -31,12 +31,14 @@
   client: "Fan Art",
   role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
   year: 2026,
+  sortOrder: 1,              // 數字越大越新，顯示位置越前面
   // focus: "center",  // 見下方規則
   // hero: true,       // 放進首頁幻燈片
 }
 ```
 - `CATEGORIES` 的 key：`character` 角色設計 / `game` 遊戲用 / `cover` 書籍封面 / `commission` 委託 / `other` 其他（`all`=全部）。要新分類先在此加。
-- `hero: true` 才會進首頁幻燈片；若全部都沒標 `hero`，自動取 `WORKS` 前 8 筆。
+- `hero: true` 才會進首頁幻燈片；未標記的作品不會自動加入。
+- 作品依 `sortOrder` 由大到小顯示；一鍵工具會自動給新作品目前最大的順位。
 
 ## ⚠️ 圖片裁切焦點規則（最常忘，務必遵守）
 全站圖以 `object-fit:cover` 裁切、焦點固定**偏上**（hero `center 16%` / 卡片 `center 12%`，定義在 style.css）。

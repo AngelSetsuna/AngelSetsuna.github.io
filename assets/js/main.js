@@ -18,6 +18,9 @@
     );
   const onErr = `onerror="this.onerror=null;this.src='${PLACEHOLDER}'"`;
 
+  const getWorksNewestFirst = () =>
+    [...WORKS].sort((a, b) => (b.sortOrder || 0) - (a.sortOrder || 0));
+
   const AVATAR_PLACEHOLDER =
     "data:image/svg+xml;charset=utf-8," +
     encodeURIComponent(
@@ -85,7 +88,9 @@
 
   function renderGrid() {
     const grid = $("#grid");
-    const list = WORKS.filter((w) => activeCat === "all" || w.category === activeCat);
+    const list = getWorksNewestFirst().filter(
+      (w) => activeCat === "all" || w.category === activeCat
+    );
 
     grid.innerHTML = list
       .map((w, i) => {
@@ -159,8 +164,7 @@
   function renderHero() {
     const wrap = $("#heroSlides");
     if (wrap) {
-      const flagged = WORKS.filter((w) => w.hero === true);
-      const imgs = (flagged.length ? flagged : WORKS).slice(0, 8);
+      const imgs = getWorksNewestFirst().filter((w) => w.hero === true);
       wrap.innerHTML = imgs
         .map((w, i) => {
           const pos = w.focus ? ` style="object-position:${w.focus}"` : "";
