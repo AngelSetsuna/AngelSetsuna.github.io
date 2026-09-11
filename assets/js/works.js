@@ -17,6 +17,7 @@ const WORKS = [
     role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
     year: 2026,
     sortOrder: 5,
+    hero: true,
   },
   {
     image: "works/10.jpg",
