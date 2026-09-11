@@ -17,7 +17,7 @@ let main = await read('assets/js/main.js');
 
 // 作品圖自動從 works.js 取得，新增作品時這裡不需手動維護
 const workImages = [...works.matchAll(/image:\s*"([^"]+)"/g)].map((m) => m[1]);
-const images = ['assets/avatar.png', 'assets/favicon.png', 'assets/apple-touch-icon.png', 'assets/vgen-badge-outline.png', ...workImages];
+const images = ['assets/avatar-256.png', 'assets/favicon.png', 'assets/apple-touch-icon.png', 'assets/vgen-badge-outline.png', ...workImages];
 const map = {};
 for (const img of images) map[img] = await dataUri(img);
 
@@ -29,7 +29,7 @@ for (const [path, uri] of Object.entries(map)) {
 }
 
 html = html.replace(/<link rel="stylesheet" href="assets\/css\/style\.css(?:\?[^\"]*)?"\s*\/>/, `<style>\n${css}\n</style>`);
-html = html.split('"assets/avatar.png"').join(`"${map['assets/avatar.png']}"`);
+html = html.replace(/"assets\/avatar-256\.png(?:\?v=[^"]+)?"/g, `"${map['assets/avatar-256.png']}"`);
 html = html.split('"assets/favicon.png"').join(`"${map['assets/favicon.png']}"`);
 html = html.split('"assets/apple-touch-icon.png"').join(`"${map['assets/apple-touch-icon.png']}"`);
 html = html.replace(/<script src="assets\/js\/works\.js(?:\?[^\"]*)?"><\/script>\s*/, '');
