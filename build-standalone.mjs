@@ -10,31 +10,33 @@ const dataUri = async (p) => {
 };
 
 let html = await read('index.html');
-const css = await read('assets/css/style.css');
+let css = await read('assets/css/style.css');
 const works = await read('assets/js/works.js');
 const i18n = await read('assets/js/i18n.js');
-const main = await read('assets/js/main.js');
+let main = await read('assets/js/main.js');
 
 // 作品圖自動從 works.js 取得，新增作品時這裡不需手動維護
 const workImages = [...works.matchAll(/image:\s*"([^"]+)"/g)].map((m) => m[1]);
-const images = ['assets/avatar.png', 'assets/favicon.png', 'assets/apple-touch-icon.png', ...workImages];
+const images = ['assets/avatar.png', 'assets/favicon.png', 'assets/apple-touch-icon.png', 'assets/vgen-badge-outline.png', ...workImages];
 const map = {};
 for (const img of images) map[img] = await dataUri(img);
+
+main = main.split('assets/vgen-badge-outline.png').join(map['assets/vgen-badge-outline.png']);
 
 let worksInlined = works;
 for (const [path, uri] of Object.entries(map)) {
   worksInlined = worksInlined.split(path).join(uri);
 }
 
-html = html.replace(/<link rel="stylesheet" href="assets\/css\/style\.css"\s*\/>/, `<style>\n${css}\n</style>`);
+html = html.replace(/<link rel="stylesheet" href="assets\/css\/style\.css(?:\?[^\"]*)?"\s*\/>/, `<style>\n${css}\n</style>`);
 html = html.split('"assets/avatar.png"').join(`"${map['assets/avatar.png']}"`);
 html = html.split('"assets/favicon.png"').join(`"${map['assets/favicon.png']}"`);
 html = html.split('"assets/apple-touch-icon.png"').join(`"${map['assets/apple-touch-icon.png']}"`);
-html = html.replace(/<script src="assets\/js\/works\.js"><\/script>\s*/, '');
-html = html.replace(/<script src="assets\/js\/i18n\.js"><\/script>\s*/, '');
+html = html.replace(/<script src="assets\/js\/works\.js(?:\?[^\"]*)?"><\/script>\s*/, '');
+html = html.replace(/<script src="assets\/js\/i18n\.js(?:\?[^\"]*)?"><\/script>\s*/, '');
 html = html.replace(
-  /<script src="assets\/js\/main\.js"><\/script>/,
-  `<script>\n${worksInlined}\n</script>\n  <script>\n${i18n}\n</script>\n  <script>\n${main}\n</script>`
+  /<script src="assets\/js\/main\.js(?:\?[^\"]*)?"><\/script>/,
+  () => `<script>\n${worksInlined}\n</script>\n  <script>\n${i18n}\n</script>\n  <script>\n${main}\n</script>`
 );
 
 await writeFile(`${ROOT}/site-standalone.html`, html, 'utf8');
