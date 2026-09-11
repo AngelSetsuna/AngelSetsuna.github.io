@@ -35,4 +35,12 @@ const WORKS = [
     role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
     year: 2026,
   },
+  {
+    image: "works/10.jpg",
+    category: "fanart",
+    title: { ja: "レミエール・ダン", en: "Remielle Dan", zh: "蕾米埃爾·丹" },
+    client: "Fan Art",
+    role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
+    year: 2026,
+  },
 ];
