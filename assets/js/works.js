@@ -10,21 +10,33 @@ const CATEGORIES = {
 
 const WORKS = [
   {
+    image: "works/04.jpg",
+    category: "fanart",
+    title: { ja: "大鳳", en: "Taihou", zh: "大鳳" },
+  {
+    image: "works/11.jpg",
+    category: "fanart",
+    title: { ja: "オデット", en: "Odette", zh: "奧黛塔" },
+    client: "Fan Art",
+    role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
+    year: 2026,
+    sortOrder: 5,
+  },
+    client: "Fan Art",
+    role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
+    year: 2025,
+    sortOrder: 4,
+  },
+  {
     image: "works/03.jpg",
     category: "fanart",
     title: { ja: "リバーレリオ", en: "Liberalio", zh: "莉貝雷利奧" },
     client: "Fan Art",
     role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
     year: 2026,
+    sortOrder: 3,
     focus: "center",
-  },
-  {
-    image: "works/04.jpg",
-    category: "fanart",
-    title: { ja: "大鳳", en: "Taihou", zh: "大鳳" },
-    client: "Fan Art",
-    role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
-    year: 2025,
+    hero: true,
   },
   {
     // 直圖：不設 focus，沿用全站「偏上」預設（hero 16% / 卡片 12%）以顯示上半部
@@ -34,6 +46,7 @@ const WORKS = [
     client: "Commission",
     role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
     year: 2026,
+    sortOrder: 2,
   },
   {
     image: "works/10.jpg",
@@ -42,5 +55,7 @@ const WORKS = [
     client: "Fan Art",
     role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
     year: 2026,
+    sortOrder: 1,
+    hero: true,
   },
 ];
