@@ -10,6 +10,15 @@ const CATEGORIES = {
 
 const WORKS = [
   {
+    image: "works/14.jpg",
+    category: "commission",
+    title: { ja: "Commission", en: "Commission", zh: "Commission" },
+    client: "Commission",
+    role:  { ja: "キャラクターデザイン", en: "Character Design", zh: "角色設計" },
+    year: 2026,
+    sortOrder: 8,
+  },
+  {
     image: "works/13.jpg",
     category: "fanart",
     title: { ja: "ヴォジャニーツァ", en: "Vodyanitsa", zh: "沃雅妮莎" },
