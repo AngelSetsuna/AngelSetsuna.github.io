@@ -10,6 +10,15 @@ const CATEGORIES = {
 
 const WORKS = [
   {
+    image: "works/13.jpg",
+    category: "fanart",
+    title: { ja: "ヴォジャニーツァ", en: "Vodyanitsa", zh: "沃雅妮莎" },
+    client: "Fan Art",
+    role:  { ja: "イラスト", en: "Illustration", zh: "插畫" },
+    year: 2026,
+    sortOrder: 7,
+  },
+  {
     image: "works/12.jpg",
     category: "fanart",
     title: { ja: "アリス：メルヘンドリーム", en: "Alice:Märchen Dream", zh: "愛麗絲：童話幻夢" },
